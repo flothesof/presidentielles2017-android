@@ -107,14 +107,17 @@ public class MainActivity extends AppCompatActivity {
         // validates if the user has clicked the correct button
         if (! userHasClicked) {
             Button b = ((Button) view);
+
             String clickedCandidate = (String) b.getText();
             int clickedIndex = Arrays.asList(candidates).indexOf(clickedCandidate);
-            int correctIndex = 0;
+
             List<String> terms = (List<String>) allPropositions.get(currentIndex);
-            if (clickedCandidate.equals(terms.get(2))) {
+            String correctCandidate = terms.get(2);
+            int correctIndex = Arrays.asList(candidates).indexOf(correctCandidate);
+
+            if (clickedCandidate.equals(correctCandidate)) {
                 b.setBackgroundColor(0xff00ff00);
                 correctClicks += 1;
-                correctIndex = clickedIndex;
             }
             else
             {
@@ -123,9 +126,8 @@ public class MainActivity extends AppCompatActivity {
                         R.id.buttonJLM, R.id.buttonMLP, R.id.buttonNDA};
                 for (int id : ids) {
                     final Button button = (Button) findViewById(id);
-                    if (button.getText().equals(terms.get(2))){
+                    if (button.getText().equals(correctCandidate)){
                         button.setBackgroundColor(0xff00ff00);
-                        correctIndex = id;
                         break;
                     }
                 }
