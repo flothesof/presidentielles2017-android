@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Présidentielles2017</string>
+    <string name="candidate_JLM">Jean-Luc\nMélenchon</string>
+    <string name="candidate_BH">Benoit\nHamon</string>
+    <string name="candidate_EM">Emmanuel\nMacron</string>
+    <string name="candidate_FF">François\nFillon</string>
+    <string name="candidate_NDA">Nicolas\nDupont-Aignan</string>
+    <string name="candidate_MLP">Marine\nLe Pen</string>
+    <string name="new_question">Nouvelle question !</string>
+    <string name="confusion_matrix">Matrice de confusion</string>
+</resources>
