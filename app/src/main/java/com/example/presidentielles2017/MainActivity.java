@@ -1,5 +1,6 @@
 package com.example.presidentielles2017;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,10 +12,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
+import static java.lang.Math.exp;
+
 public class MainActivity extends AppCompatActivity {
+    public static final String CONFUSION_MATRIX = "com.example.presidentielles2017.CONFUSION_MATRIX";
     private Random randomGenerator = new Random();
     List allPropositions = new ArrayList();
     int currentIndex;
@@ -23,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     int totalClicks = 0;
     int correctClicks = 0;
     int [][] confusionMatrix;
-
+    HashMap counter = new HashMap();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +47,10 @@ public class MainActivity extends AppCompatActivity {
                     getResources().getString(R.string.candidate_JLM),
                     getResources().getString(R.string.candidate_MLP),
                     getResources().getString(R.string.candidate_NDA)};
+            for (String candidate: candidates) {
+                counter.put(candidate, 0);
+            }
+
             confusionMatrix = new int[candidates.length][candidates.length];
             for (int i=0; i<candidates.length;i++){
                 for (int j=0; j<candidates.length; j++){
@@ -87,6 +96,12 @@ public class MainActivity extends AppCompatActivity {
 
     // selects a new question and displays it
     public List<String> generateNewQuestion() {
+        double[] weights = new double[candidates.length];
+        int i = 0;
+        for (String candidate: candidates) {
+            //TODO : weights[i] = exp((double) counter.get(candidate));
+            i ++;
+        }
         int index = randomGenerator.nextInt(allPropositions.size());
         currentIndex = index;
         List<String> terms = (List<String>) allPropositions.get(index);
@@ -98,6 +113,8 @@ public class MainActivity extends AppCompatActivity {
         List<String> newQuestion = generateNewQuestion();
         TextView textView = (TextView) findViewById(R.id.textViewProposition);
         textView.setText(newQuestion.get(0));
+        String candidate = newQuestion.get(2);
+        counter.put(candidate, 1 + (int) counter.get(candidate));
         resetButtonColors();
         userHasClicked = false;
 
@@ -160,6 +177,14 @@ public class MainActivity extends AppCompatActivity {
     public void updateConfusionMatrix(int clickedCandidate, int correctCandidate) {
         // updates the confusion matrix
         confusionMatrix[correctCandidate][clickedCandidate] += 1;
+    }
+
+    public void displayConfusionMatrix(View view) {
+        Intent intent = new Intent(this, DisplayConfusionMatrixActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(CONFUSION_MATRIX, confusionMatrix);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 }
 
