@@ -28,7 +28,9 @@ public class MainActivity extends AppCompatActivity {
     int totalClicks = 0;
     int correctClicks = 0;
     int [][] confusionMatrix;
-    HashMap counter = new HashMap();
+    // using a hashmap: specify which type
+    // http://stackoverflow.com/questions/15036340/java-lang-classcastexception-java-lang-integer-cannot-be-cast-to-java-lang-doub
+    HashMap<String, Integer> counter = new HashMap();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,15 +98,36 @@ public class MainActivity extends AppCompatActivity {
 
     // selects a new question and displays it
     public List<String> generateNewQuestion() {
-        double[] weights = new double[candidates.length];
-        int i = 0;
-        for (String candidate: candidates) {
-            //TODO : weights[i] = exp((double) counter.get(candidate));
-            i ++;
+        // compute cumsum
+        double[] cumsum = new double[candidates.length];
+        for (int i = 0; i < candidates.length; i++) {
+            String candidate = candidates[i];
+            double weight = exp(-counter.get(candidate));
+            cumsum[i] = weight;
+            if (i > 0) {
+                cumsum[i] += cumsum[i - 1];
+            }
         }
-        int index = randomGenerator.nextInt(allPropositions.size());
+        // norm cumsum
+        for (int i = 0; i < candidates.length; i++) {
+            cumsum[i] = cumsum[i] / cumsum[candidates.length - 1];
+        }
+        // get new float to determine next candidate
+        double rand = randomGenerator.nextDouble();
+        // determine next candidate
+        int nextCandidateIndex = 0;
+        while (cumsum[nextCandidateIndex] < rand) {
+            nextCandidateIndex++;
+        }
+        String nextCandidate = candidates[nextCandidateIndex];
+        List<String> terms;
+        int index;
+        do {
+            index = randomGenerator.nextInt(allPropositions.size());
+            terms = (List<String>) allPropositions.get(index);
+
+        } while (terms.get(2) != nextCandidate);
         currentIndex = index;
-        List<String> terms = (List<String>) allPropositions.get(index);
         return terms;
     }
 

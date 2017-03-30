@@ -41,11 +41,6 @@ public class DisplayConfusionMatrixActivity extends AppCompatActivity {
         //Create a new image bitmap and attach a brand new canvas to it
         // http://stackoverflow.com/questions/8445161/android-canvas-drawline-inside-imageview
         Bitmap bitmap = Bitmap.createBitmap(imageView.getWidth(), imageView.getHeight(), Bitmap.Config.ARGB_8888);
-        //c = new Canvas(bmp);
-        //mImagenCampo.draw(c);
-
-        //ColorDrawable bmpDraw = (ColorDrawable) imageView.getDrawable();
-        //Bitmap bitmap = bmpDraw.getBitmap().copy(Bitmap.Config.RGB_565, true);
         Canvas canvas = new Canvas(bitmap);
 
         // drawing options
@@ -64,6 +59,12 @@ public class DisplayConfusionMatrixActivity extends AppCompatActivity {
         float offsetLeft = (float) (.3 * bitmap.getWidth());
         float blockWidth = (bitmap.getWidth() - offsetLeft) / confusionMatrix.length;
         float blockHeight = (bitmap.getHeight() - offsetBottom) / confusionMatrix.length;
+
+        // computing the total answers for each candidate
+        int[] totalAnswers = new int[candidates.length];
+        for (int i=0; i<candidates.length; i++) {
+            totalAnswers[i] = 0;
+        }
 
         // draw the confusion matrix
         for (int i = 0; i < confusionMatrix.length; i++) {

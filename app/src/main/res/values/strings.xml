@@ -8,4 +8,5 @@
     <string name="candidate_MLP">Marine\nLe Pen</string>
     <string name="new_question">Nouvelle question !</string>
     <string name="confusion_matrix">Matrice de confusion</string>
+    <string name="label_textview">Quel candidat propose la chose suivante ?</string>
 </resources>
