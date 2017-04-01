@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.presidentielles2017">
+    package="com.frolianlb.presidentielles2017">
 
     <application
         android:allowBackup="true"
@@ -9,19 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" android:launchMode="singleTop">
+        <activity android:name="com.frolianlb.presidentielles2017.MainActivity" android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             android:screenOrientation="portrait"
         </activity>
-        <activity android:name=".DisplayConfusionMatrixActivity">
+        <activity android:name="com.frolianlb.presidentielles2017.DisplayConfusionMatrixActivity">
             android:parentActivityName=".MainActivity" >
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="com.frolianlb.presidentielles2017.MainActivity" />
             android:screenOrientation="portrait"
         </activity>
     </application>

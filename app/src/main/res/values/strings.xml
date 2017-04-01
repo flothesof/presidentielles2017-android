@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Présidentielles2017</string>
+    <string name="app_name">Présidentielles 2017</string>
     <string name="candidate_JLM">Jean-Luc\nMélenchon</string>
     <string name="candidate_BH">Benoit\nHamon</string>
     <string name="candidate_EM">Emmanuel\nMacron</string>

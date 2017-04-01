@@ -1,4 +1,4 @@
-package com.example.presidentielles2017;
+package com.frolianlb.presidentielles2017;
 
 import android.content.Intent;
 import android.graphics.Bitmap;

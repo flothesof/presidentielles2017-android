@@ -1,4 +1,4 @@
-package com.example.presidentielles2017;
+package com.frolianlb.presidentielles2017;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -19,7 +19,7 @@ import java.util.Random;
 import static java.lang.Math.exp;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String CONFUSION_MATRIX = "com.example.presidentielles2017.CONFUSION_MATRIX";
+    public static final String CONFUSION_MATRIX = "com.frolianlb.presidentielles2017.CONFUSION_MATRIX";
     private Random randomGenerator = new Random();
     List allPropositions = new ArrayList();
     int currentIndex;

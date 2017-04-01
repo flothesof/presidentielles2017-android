@@ -1,4 +1,4 @@
-package com.example.presidentielles2017;
+package com.frolianlb.presidentielles2017;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.presidentielles2017", appContext.getPackageName());
+        assertEquals("com.frolianlb.presidentielles2017", appContext.getPackageName());
     }
 }
